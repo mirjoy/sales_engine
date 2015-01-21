@@ -1,7 +1,7 @@
 require 'CSV'
-require './lib/merchant'
 require 'minitest/autorun'
 require 'minitest/pride'
+require_relative '../lib/merchant'
 
 class MerchantTest < Minitest::Test
 
@@ -11,9 +11,11 @@ class MerchantTest < Minitest::Test
 
   def test_find_id
     merchants = CSV.open('./data/merchants.csv', headers: true, header_converters: :symbol)
+
     one_mer = merchants.each do |mer|
       return mer
     end
+
     merchant = Merchant.new(one_mer)
     assert_equal 1, merchant.id
   end
