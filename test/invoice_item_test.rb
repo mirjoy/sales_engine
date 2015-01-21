@@ -1,4 +1,4 @@
-require 'CSV'
+require 'csv'
 require './lib/invoice_item'
 require 'minitest/autorun'
 require 'minitest/pride'
