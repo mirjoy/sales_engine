@@ -3,7 +3,7 @@ class Customer
               :first_name,
               :last_name,
               :created_at,
-              :updated_at,
+              :updated_at
 
   def initialize(row)
     @id = row[:id]
@@ -12,6 +12,5 @@ class Customer
     @created_at = row[:created_at]
     @updated_at = row[:updated_at]
   end
-
 
 end
