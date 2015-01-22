@@ -14,49 +14,31 @@ class InvoiceRepo
   end
 
   def random
-    all_invoices.parse.sample
+    all.sample
   end
 
   def find_by_id(id)
-    all_ids = all.select do |invoice|
-      invoice.id == id
-    end
-    all_ids
+    find_all_by_id(id)[0]
   end
 
   def find_by_customer_id(c_id)
-    all_ids = all.select do |invoice|
-      invoice.customer_id == c_id
-    end
-    all_ids[0]
+    find_all_by_customer_id(c_id)[0]
   end
 
   def find_by_merchant_id(m_id)
-    all_ids = all_invoices.parse.select do |invoice|
-      invoice.merchant_id == m_id
-    end
-    all_ids[0]
+    find_all_by_merchant_id(m_id)[0]
   end
 
   def find_by_status(stat)
-    all_stats = all.select do |invoice|
-      invoice.status == stat
-    end
-    all_stats[0]
+    find_all_by_status(stat)[0]
   end
 
   def find_by_created_at(time)
-    each_invoice = all.select do |invoice|
-      invoice.created_at == time
-    end
-    each_invoice[0]
+    find_all_by_created_at(time)[0]
   end
 
   def find_by_updated_at(time)
-    each_invoice = all.select do |invoice|
-      invoice.updated_at == time
-    end
-    each_invoice[0]
+    find_all_by_updated_at(time)[0]
   end
 
   def find_all_by_id(id)
