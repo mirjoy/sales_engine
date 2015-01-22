@@ -29,6 +29,31 @@ class InvoiceRepoTest < Minitest::Test
     assert_equal "shipped", inv[0].status
   end
 
+  def test_it_finds_one_invoice_by_id
+    inv = invoice_repo.find_by_customer_id(1)
+    assert_equal "shipped", inv.status
+  end
+
+  def test_it_finds_all_invoices_by_customer_id
+    inv = invoice_repo.find_all_by_customer_id(1)
+    assert_equal 5, inv.count
+  end
+
+  def test_it_finds_one_invoice_by_customer_id
+    inv = invoice_repo.find_all_by_customer_id(1)
+    assert_equal "2012-03-25 09:54:09 UTC", inv[0].created_at
+  end
+
+  def test_it_finds_all_invoices_by_merchant_id
+    inv = invoice_repo.find_all_by_merchant_id(75)
+    assert_equal "2012-03-12 05:54:09 UTC", inv[0].created_at
+  end
+
+  def test_it_finds_one_invoice_by_merchant_id
+    inv = invoice_repo.find_by_merchant_id(75)
+    assert_equal "2012-03-12 05:54:09 UTC", inv.created_at
+  end
+
   def test_it_finds_a_random_invoice
     assert invoice_repo.random
   end
