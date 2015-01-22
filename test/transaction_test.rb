@@ -1,8 +1,5 @@
-require 'csv'
+require_relative './test_helper'
 require './lib/transaction'
-require 'minitest/autorun'
-require 'minitest/pride'
-require 'pry'
 
 class TransactionTest < Minitest::Test
 

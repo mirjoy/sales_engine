@@ -1,8 +1,5 @@
-require 'csv'
-require './lib/invoice'
-require 'minitest/autorun'
-require 'minitest/pride'
-require 'pry'
+require_relative './test_helper'
+require_relative '../lib/invoice'
 
 class InvoiceTest < Minitest::Test
 

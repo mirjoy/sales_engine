@@ -1,8 +1,5 @@
-require 'csv'
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/customer_parser'
-require_relative '../lib/invoice'
+require_relative './test_helper'
+require_relative '../lib/customer_parser.rb'
 
 class CustomerParserTest < Minitest::Test
 

@@ -1,7 +1,5 @@
-require 'csv'
+require_relative './test_helper'
 require './lib/item'
-require 'minitest/autorun'
-require 'minitest/pride'
 
 class ItemTest < Minitest::Test
 
