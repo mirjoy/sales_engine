@@ -10,70 +10,18 @@ class InvoiceTest < Minitest::Test
     assert Invoice
   end
 
-  def test_find_id
-    invoice = CSV.open('./data/invoices.csv', headers: true, header_converters: :symbol)
-
-    one_invoice = invoice.each do |t|
-      return t
-    end
-
-    invoice_one = Invoice.new(one_invoice)
-    assert_equal 1, invoice_one.id
+  def test_it_stores_an_id
+    invoice = Invoice.new({:id => 6}, nil)
+    assert_equal 6, invoice.id
   end
 
-  def test_find_customer_id
-    invoice = CSV.open('./data/invoices.csv', headers: true, header_converters: :symbol)
-
-    one_invoice = invoice.each do |t|
-      return t
-    end
-
-    invoice_one = Invoice.new(one_invoice)
-    assert_equal 1, invoice_one.customer_id
+  def test_it_stores_ids_as_integers_only
+    invoice = Invoice.new({:id => '6'}, nil)
+    assert_equal 6, invoice.id
   end
 
-  def test_find_merchant_id
-    invoice = CSV.open('./data/invoices.csv', headers: true, header_converters: :symbol)
-
-    one_invoice = invoice.each do |t|
-      return t
-    end
-
-    invoice_one = Invoice.new(one_invoice)
-    assert_equal 26, invoice_one.merchant_id
+  def test_it_stores_a_status
+    invoice = Invoice.new({:status => 'shipped'}, nil)
+    assert_equal "shipped", invoice.status
   end
-
-  def test_find_status
-    invoice = CSV.open('./data/invoices.csv', headers: true, header_converters: :symbol)
-
-    one_invoice = invoice.each do |t|
-      return t
-    end
-
-    invoice_one = Invoice.new(one_invoice)
-    assert_equal "shipped", invoice_one.status
-  end
-
-  def test_find_created_at
-    invoice = CSV.open('./data/invoices.csv', headers: true, header_converters: :symbol)
-
-    one_invoice = invoice.each do |t|
-      return t
-    end
-
-    invoice_one = Invoice.new(one_invoice)
-    assert_equal "2012-03-25 09:54:09 UTC", invoice_one.created_at
-  end
-
-  def test_find_updated_at
-    invoice = CSV.open('./data/invoices.csv', headers: true, header_converters: :symbol)
-
-    one_invoice = invoice.each do |t|
-      return t
-    end
-
-    invoice_one = Invoice.new(one_invoice)
-    assert_equal "2012-03-25 09:54:09 UTC", invoice_one.updated_at
-  end
-
 end

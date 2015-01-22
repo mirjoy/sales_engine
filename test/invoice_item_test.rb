@@ -9,80 +9,18 @@ class InvoiceItemTest < Minitest::Test
     assert InvoiceItem
   end
 
-  def test_find_id
-    invoice_items = CSV.open('./data/invoice_items.csv', headers: true, header_converters: :symbol)
-
-    one_invoice_item = invoice_items.each do |ii|
-      return ii
-    end
-
-    invoice_items = InvoiceItem.new(one_invoice_item)
-    assert_equal 1, invoice_items.id
+  def test_it_stores_an_id
+    invoice = InvoiceItem.new({:id => 6}, nil)
+    assert_equal 6, invoice.id
   end
 
-  def test_find_item_id
-    invoice_items = CSV.open('./data/invoice_items.csv', headers: true, header_converters: :symbol)
-
-    one_invoice_item = invoice_items.each do |ii|
-      return ii
-    end
-
-    invoice_items = InvoiceItem.new(one_invoice_item)
-    assert_equal 539, invoice_items.item_id
+  def test_it_stores_ids_as_integers_only
+    invoice = InvoiceItem.new({:id => '6'}, nil)
+    assert_equal 6, invoice.id
   end
 
-  def test_find_invoice_id
-    invoice_items = CSV.open('./data/invoice_items.csv', headers: true, header_converters: :symbol)
-
-    one_invoice_item = invoice_items.each do |ii|
-      return ii
-    end
-
-    invoice_items = InvoiceItem.new(one_invoice_item)
-    assert_equal 1, invoice_items.invoice_id
-  end
-
-  def test_find_quantity
-    invoice_items = CSV.open('./data/invoice_items.csv', headers: true, header_converters: :symbol)
-
-    one_invoice_item = invoice_items.each do |ii|
-      return ii
-    end
-
-    invoice_items = InvoiceItem.new(one_invoice_item)
-    assert_equal 5, invoice_items.quantity
-  end
-
-  def test_find_unit_price
-    invoice_items = CSV.open('./data/invoice_items.csv', headers: true, header_converters: :symbol)
-
-    one_invoice_item = invoice_items.each do |ii|
-      return ii
-    end
-
-    invoice_items = InvoiceItem.new(one_invoice_item)
-    assert_equal 13635, invoice_items.unit_price
-  end
-
-  def test_find_created_at
-    invoice_items = CSV.open('./data/invoice_items.csv', headers: true, header_converters: :symbol)
-
-    one_invoice_item = invoice_items.each do |ii|
-      return ii
-    end
-
-    invoice_items = InvoiceItem.new(one_invoice_item)
-    assert_equal "2012-03-27 14:54:09 UTC", invoice_items.created_at
-  end
-
-  def test_find_updated_at
-    invoice_items = CSV.open('./data/invoice_items.csv', headers: true, header_converters: :symbol)
-
-    one_invoice_item = invoice_items.each do |ii|
-      return ii
-    end
-
-    invoice_items = InvoiceItem.new(one_invoice_item)
-    assert_equal "2012-03-27 14:54:09 UTC", invoice_items.updated_at
+  def test_it_stores_a_quantity
+    invoice = InvoiceItem.new({:quantity => 4}, nil)
+    assert_equal 4, invoice.quantity
   end
 end
