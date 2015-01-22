@@ -31,14 +31,13 @@ class ItemRepoTest < Minitest::Test
   end
 
   def test_it_finds_all_items_by_description
-    item = item_repo.find_all_by_description("Sunt eum id eius magni consequuntur delectus veritatis")
+    item = item_repo.find_all_by_description("Sunt eum id eius magni consequuntur delectus veritatis. Quisquam laborum illo ut ab. Ducimus in est id voluptas autem.")
     assert_equal "Item Nemo Facere", item[0].name
     assert_equal 2, item.count
   end
 
   def test_it_finds_all_items_by_unit_price
-    skip
-    item = item_repo.find_all_by_unit_price("Quisquam laborum illo ut ab")
+    item = item_repo.find_all_by_unit_price("4291")
     assert_equal "Item Nemo Facere", item[0].name
     assert_equal 2, item.count
   end

@@ -38,6 +38,12 @@ class ItemRepo
     end
   end
 
+  def find_all_by_unit_price(unit_price)
+    all_unit_prices = all_items.parse.select do |item|
+      item.unit_price.downcase == unit_price.downcase
+    end
+  end
+
   def find_by_created_at(time)
     all_items = all_items.parse.select do |item|
       item.created_at == time
@@ -60,6 +66,7 @@ class ItemRepo
 
   def find_all_by_name(lname)
     all_items.parse.select do |item|
+
       item.name.downcase == lname.downcase
     end
   end
