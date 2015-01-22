@@ -14,6 +14,7 @@ class InvoiceItem
     @invoice_id = row[:invoice_id].to_i
     @quantity = row[:quantity].to_i
     @unit_price = row[:unit_price].to_i
+    #convert to dollars using BigDecimal
     @created_at = row[:created_at]
     @updated_at = row[:updated_at]
     @parent_class = parent_class

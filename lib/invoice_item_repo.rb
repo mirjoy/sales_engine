@@ -46,37 +46,37 @@ class InvoiceItemRepo
   end
 
   def find_all_by_id(id)
-    all.select do |transact|
+    all.find_all do |transact|
       transact.id == id
     end
   end
 
   def find_all_by_invoice_id(id)
-    all.select do |transact|
+    all.find_all do |transact|
       transact.invoice_id == id
     end
   end
 
   def find_all_by_quantity(num)
-    all.select do |transact|
+    all.find_all do |transact|
       transact.quantity == num
     end
   end
 
   def find_all_by_unit_price(num)
-    all.select do |transact|
+    all.find_all do |transact|
       transact.unit_price == num
     end
   end
 
   def find_all_by_created_at(time)
-    all.select do |transact|
+    all.find_all do |transact|
       transact.created_at == time
     end
   end
 
   def find_all_by_updated_at(time)
-    all.select do |transact|
+    all.find_all do |transact|
       transact.updated_at == time
     end
   end

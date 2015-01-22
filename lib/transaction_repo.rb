@@ -46,43 +46,43 @@ class TransactionRepo
   end
 
   def find_all_by_id(id)
-    all.select do |transact|
+    all.find_all do |transact|
       transact.id == id
     end
   end
 
   def find_all_by_invoice_id(id)
-    all.select do |transact|
+    all.find_all do |transact|
       transact.invoice_id == id
     end
   end
 
   def find_all_by_credit_card_number(cc)
-    all.select do |transact|
+    all.find_all do |transact|
       transact.credit_card_number == cc
     end
   end
 
   def find_all_by_credit_card_expiration_date(cc)
-    all.select do |transact|
+    all.find_all do |transact|
       transact.merchant_id == cc
     end
   end
 
   def find_all_by_result(status)
-    all.select do |transact|
+    all.find_all do |transact|
       transact.result == status
     end
   end
 
   def find_all_by_created_at(time)
-    all.select do |transact|
+    all.find_all do |transact|
       transact.created_at == time
     end
   end
 
   def find_all_by_updated_at(time)
-    all.select do |transact|
+    all.find_all do |transact|
       transact.updated_at == time
     end
   end
