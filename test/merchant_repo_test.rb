@@ -47,17 +47,14 @@ class MerchantRepoTest < Minitest::Test
     merch = merchant_repo.find_all_by_updated_at("2012-03-27 14:53:59 UTC")
     assert_equal 6, merch.count
   end
-
 end
 
 class FakeSalesEngine
   attr_reader :merch_repo, :item_repo
 
   def initialize
-    file = "./test/support/sample_merchants.csv"
-    @merch_repo = MerchantRepo.new(file, self)
-    file2 = "./test/support/sample_items.csv"
-    @item_repo = ItemRepo.new(file2, self)
+    @merch_repo = MerchantRepo.new("./test/support/sample_merchants.csv", self)
+    @item_repo = ItemRepo.new("./test/support/sample_items.csv", self)
   end
 end
 

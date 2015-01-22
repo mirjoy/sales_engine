@@ -18,9 +18,20 @@
  require_relative '../lib/transaction_repo'
 
  class SalesEngine
+   attr_reader :customer_repo,
+               :invoice_item_repo,
+               :invoice_repo,
+               :item_repo,
+               :merchant_repo,
+               :transaction_repo
 
    def initialize
+     @customer_repo = CustomerRepo.new('../data/customers', self)
+     @invoice_item_repo = InvoiceItemRepo.new('../data/invoice_items', self)
+     @invoice_repo = InvoiceRepo.new('../data/invoices', self)
      @item_repo = ItemRepo.new('../data/items', self)
+     @merchant_repo = MerchantRepo.new('../data/merchants', self)
+     @transaction_repo = TransactionRepo.new('../data/transactions', self)
    end
 
    def startup
