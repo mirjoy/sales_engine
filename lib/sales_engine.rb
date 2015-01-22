@@ -1,27 +1,31 @@
- require './data/customers'
- require './data/invoice_items'
- require './data/invoices'
- require './data/items'
- require './data/merchants'
- require './data/transactions'
- require './lib/customer'
- require './lib/customer_repo'
- require './lib/invoice_item'
- require './lib/invoice_item_repo'
- require './lib/invoice'
- require './lib/invoice_repo'
- require './lib/item'
- require './lib/item_repo'
- require './lib/merchant'
- require './lib/merchant_repo'
- require './lib/transaction'
- require './lib/transaction_repo'
+ require_relative '../data/customers'
+ require_relative '../data/invoice_items'
+ require_relative '../data/invoices'
+ require_relative '../data/items'
+ require_relative '../data/merchants'
+ require_relative '../data/transactions'
+ require_relative '../lib/customer'
+ require_relative '../lib/customer_repo'
+ require_relative '../lib/invoice_item'
+ require_relative '../lib/invoice_item_repo'
+ require_relative '../lib/invoice'
+ require_relative '../lib/invoice_repo'
+ require_relative '../lib/item'
+ require_relative '../lib/item_repo'
+ require_relative '../lib/merchant'
+ require_relative '../lib/merchant_repo'
+ require_relative '../lib/transaction'
+ require_relative '../lib/transaction_repo'
 
  class SalesEngine
+
+   def initialize
+     @item_repo = ItemRepo.new('../data/items', self)
+   end
+
    def startup
-     @invoice_items = CSV.open('./data/invoice_items.csv', headers: true, header_converters: :symbol)
    end
  end
 
- engine = SalesEngine.new
- engine.startup
+ # engine = SalesEngine.new
+ # engine.startup

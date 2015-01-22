@@ -2,11 +2,11 @@ require_relative '../lib/merchant_parser'
 
 class MerchantRepo
   attr_reader :all_merchants,
-              :search_engine
+              :sales_engine
 
   def initialize(data, parent_class)
     @all_merchants = MerchantParser.new(data, parent_class)
-    @search_engine = parent_class
+    @sales_engine = parent_class
   end
 
   def all
@@ -15,6 +15,10 @@ class MerchantRepo
 
   def random
     all_merchants.parse.sample
+  end
+
+  def items(merchant_id)
+    sales_engine.item_repo.find_all_by_merchant_id(merchant_id)
   end
 
   def find_by_id(m_id)

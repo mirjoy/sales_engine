@@ -1,6 +1,6 @@
 require_relative './test_helper'
 require_relative '../lib/merchant_repo'
-
+require_relative '../lib/invoice_repo'
 
 class MerchantRepoTest < Minitest::Test
   attr_accessor :merchant_repo
@@ -48,5 +48,28 @@ class MerchantRepoTest < Minitest::Test
     assert_equal 6, merch.count
   end
 
+end
 
+class FakeSalesEngine
+  attr_reader :merch_repo, :item_repo
+
+  def initialize
+    file = "./test/support/sample_merchants.csv"
+    @merch_repo = MerchantRepo.new(file, self)
+    file2 = "./test/support/sample_items.csv"
+    @item_repo = ItemRepo.new(file2, self)
+  end
+end
+
+class MerchantIntegrationTest < Minitest::Test
+  attr_reader :fake_sales
+
+  def setup
+    @fake_sales = FakeSalesEngine.new
+  end
+
+  def test_it_finds_related_orders
+    stuff = fake_sales.merch_repo.items(1)
+    assert_equal 6, stuff.count
+  end
 end
