@@ -18,59 +18,47 @@ class CustomerRepo
   end
 
   def find_by_id(c_id)
-    all_ids = all_customers.parse.select do |customer|
-      customer.id == c_id
-    end
-    all_ids[0]
+    find_all_by_id[0]
   end
 
   def find_by_name(lname)
-    all_names = all_customers.parse.select do |customer|
-      customer.first_name.downcase == lname.downcase
-    end
-    all_names[0]
+    find_all_by_name[0]
   end
 
   def find_by_created_at(time)
-    all_customers = all_customers.parse.select do |customer|
-      customer.created_at == time
-    end
-    all_customers[0]
+    find_all_by_created_at[0]
   end
 
   def find_by_updated_at(time)
-    all_customers = all_customers.parse.select do |customer|
-      customer.updated_at == time
-    end
-    all_customers[0]
+    find_all_by_updated_at[0]
   end
 
   def find_all_by_id(c_id)
-    all_customers.parse.select do |customer|
+    all.find_all do |customer|
       customer.id == c_id
     end
   end
 
   def find_all_by_first_name(first_name)
-    all_customers.parse.select do |customer|
+    all.find_all do |customer|
       customer.first_name.downcase == first_name.downcase
     end
   end
 
   def find_all_by_last_name(last_name)
-    all_customers.parse.select do |customer|
+    all.find_all do |customer|
       customer.last_name.downcase == last_name.downcase
     end
   end
 
   def find_all_by_created_at(time)
-    all_customers.parse.select do |customer|
+    all.find_all do |customer|
       customer.created_at == time
     end
   end
 
   def find_all_by_updated_at(time)
-    all_customers.parse.select do |customer|
+    all.find_all do |customer|
       customer.updated_at == time
     end
   end

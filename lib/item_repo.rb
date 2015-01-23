@@ -19,39 +19,19 @@ class ItemRepo
   end
 
   def find_by_id(i_id)
-    all_ids = all.select do |item|
-      item.id == i_id
-    end
-    all_ids[0]
+    find_all_by_id[0]
   end
 
   def find_by_name(lname)
-    all_names = all.select do |item|
-      item.name.downcase == lname.downcase
-    end
-    all_names[0]
+    find_all_by_name[0]
   end
 
-  def find_all_by_description(i_description)
-    all_descriptions = all.select do |item|
-      item.description.downcase == i_description.downcase
-    end
-  end
-
-  def find_all_by_unit_price(unit_price)
-    all_unit_prices = all.select do |item|
-      item.unit_price.downcase == unit_price.downcase
-    end
+  def find_by_description(desc)
+    find_all_by_description(desc)
   end
 
   def find_by_merchant_id(m_id)
     find_all_by_merchant_id(m_id)[0]
-  end
-
-  def find_all_by_merchant_id(m_id)
-    all_merchants = all.select do |item|
-      item.merchant_id == m_id
-    end
   end
 
   def find_by_created_at(time)
@@ -77,6 +57,23 @@ class ItemRepo
   def find_all_by_name(lname)
     all.select do |item|
       item.name.downcase == lname.downcase
+    end
+  end
+  def find_all_by_description(desc)
+    all_descriptions = all.select do |item|
+      item.description.downcase == desc.downcase
+    end
+  end
+
+  def find_all_by_unit_price(unit_price)
+    all_unit_prices = all.select do |item|
+      item.unit_price.downcase == unit_price.downcase
+    end
+  end
+
+  def find_all_by_merchant_id(m_id)
+    all_merchants = all.select do |item|
+      item.merchant_id == m_id
     end
   end
 
