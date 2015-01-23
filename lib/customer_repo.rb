@@ -2,11 +2,11 @@ require_relative '../lib/customer_parser'
 
 class CustomerRepo
   attr_reader :all_customers,
-              :search_engine
+              :sales_engine
 
   def initialize(data, parent_class)
     @all_customers = CustomerParser.new(data, parent_class)
-    @search_engine = parent_class
+    @sales_engine = parent_class
   end
 
   def all

@@ -2,11 +2,11 @@ require_relative '../lib/invoice_item_parser'
 
 class InvoiceItemRepo
   attr_reader :all_invoice_items,
-  :search_engine
+              :sales_engine
 
   def initialize(data, parent_class)
     @all_invoice_items = InvoiceItemParser.new(data, parent_class)
-    @search_engine = parent_class
+    @sales_engine = parent_class
   end
 
   def all

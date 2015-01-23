@@ -2,11 +2,11 @@ require_relative '../lib/transaction_parser'
 
 class TransactionRepo
   attr_reader :all_transactions,
-              :search_engine
+              :sales_engine
 
   def initialize(data, parent_class)
     @all_transactions = TransactionParser.new(data, parent_class)
-    @search_engine = parent_class
+    @sales_engine = parent_class
   end
 
   def all
