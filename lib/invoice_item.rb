@@ -1,3 +1,5 @@
+require 'bigdecimal'
+
 class InvoiceItem
     attr_reader :id,
                 :item_id,
@@ -13,8 +15,7 @@ class InvoiceItem
     @item_id = row[:item_id].to_i
     @invoice_id = row[:invoice_id].to_i
     @quantity = row[:quantity].to_i
-    @unit_price = row[:unit_price].to_i
-    #convert to dollars using BigDecimal
+    @unit_price = BigDecimal.new(row[:unit_price].to_i)
     @created_at = row[:created_at]
     @updated_at = row[:updated_at]
     @parent_class = parent_class

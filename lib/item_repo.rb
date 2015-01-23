@@ -67,7 +67,7 @@ class ItemRepo
 
   def find_all_by_unit_price(unit_price)
     all_unit_prices = all.select do |item|
-      item.unit_price.downcase == unit_price.downcase
+      item.unit_price == unit_price
     end
   end
 

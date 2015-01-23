@@ -22,6 +22,11 @@ class ItemRepoTest < Minitest::Test
     assert_equal "Item Nemo Facere", item_repo.all[3].name
   end
 
+  def test_it_finds_all_by_merchant_id
+    items = item_repo.find_all_by_merchant_id(1)
+    assert_equal 6, items.count
+  end
+
   def test_it_finds_all_items_by_name_case_insensitively
     item = item_repo.find_all_by_name("ITem NeMo Facere")
     assert_equal "Item Nemo Facere", item[0].name
@@ -35,7 +40,7 @@ class ItemRepoTest < Minitest::Test
   end
 
   def test_it_finds_all_items_by_unit_price
-    item = item_repo.find_all_by_unit_price("4291")
+    item = item_repo.find_all_by_unit_price(4291)
     assert_equal "Item Nemo Facere", item[0].name
     assert_equal 2, item.count
   end
