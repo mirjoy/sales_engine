@@ -35,56 +35,51 @@ class ItemRepo
   end
 
   def find_by_created_at(time)
-    all_items = all.select do |item|
-      item.created_at == time
-    end
-    all_items[0]
+    find_all_by_created_at(time)[0]
   end
 
   def find_by_updated_at(time)
-    all_items = all.select do |item|
-      item.updated_at == time
-    end
-    all_items[0]
+    find_all_by_updated_at(time)[0]
   end
 
   def find_all_by_id(i_id)
-    all.select do |item|
+    all.find_all do |item|
       item.id == i_id
     end
   end
 
   def find_all_by_name(lname)
-    all.select do |item|
+    all.find_all do |item|
       item.name.downcase == lname.downcase
     end
   end
+
   def find_all_by_description(desc)
-    all_descriptions = all.select do |item|
+    all.find_all do |item|
       item.description.downcase == desc.downcase
     end
   end
 
   def find_all_by_unit_price(unit_price)
-    all_unit_prices = all.select do |item|
+    all.find_all do |item|
       item.unit_price == unit_price
     end
   end
 
   def find_all_by_merchant_id(m_id)
-    all_merchants = all.select do |item|
+    all.find_all do |item|
       item.merchant_id == m_id
     end
   end
 
   def find_all_by_created_at(time)
-    all.select do |item|
+    all.find_all do |item|
       item.created_at == time
     end
   end
 
   def find_all_by_updated_at(time)
-    all.select do |item|
+    all.find_all do |item|
       item.updated_at == time
     end
   end
