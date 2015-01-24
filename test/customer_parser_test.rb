@@ -20,26 +20,5 @@ class CustomerParserTest < Minitest::Test
     assert_equal 2, second.id
     assert_equal "Cecelia", second.first_name
   end
-end
-
-class FakeCustomerRepository
-  attr_accessor :invoices
-
-  def find_invoices_by_customer_id(id)
-    @invoices
-  end
-end
-
-class CustomerIntegrationTest < Minitest::Test
-
-  def test_it_finds_related_orders
-    skip
-    @customer_repo = FakeCustomerRepository.new
-    data = {:name => "My Shop"}
-    @customer = Customer.new(data, @customer_repo)
-    invoice = Array.new(5){ Invoice.new(:hi => "moarstuff")}
-    @customer_repo.invoices = invoice
-    assert_equal invoice, @customer.invoices
-  end
 
 end

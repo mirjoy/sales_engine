@@ -17,7 +17,7 @@ class MerchantRepo
     all_merchants.parse.sample
   end
 
-  def items(merchant_id)
+  def items(merchant_id)    
     sales_engine.item_repo.find_all_by_merchant_id(merchant_id)
   end
 

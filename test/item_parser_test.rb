@@ -21,26 +21,5 @@ class ItemParserTest < Minitest::Test
     assert_equal 2, second.id
     assert_equal "Item Autem Minima", second.name
   end
-end
-
-class FakeItemRepository
-  attr_accessor :invoices
-
-  def find_invoices_by_item_id(id)
-    @invoices
-  end
-end
-
-class ItemIntegrationTest < Minitest::Test
-
-  def test_it_finds_related_orders
-    skip
-    @item_repo = FakeItemRepository.new
-    data = {:name => "My Shop"}
-    @item = Item.new(data, @item_repo)
-    invoice = Array.new(5){ Invoice.new(:hi => "moarstuff")}
-    @item_repo.invoices = invoice
-    assert_equal invoice, @item.invoices
-  end
 
 end
