@@ -60,6 +60,10 @@ class TransactionRepoTest < Minitest::Test
     inv = transaction_repo.find_all_by_updated_at("2012-03-27 14:54:10 UTC")
     assert_equal 3, inv.count
   end
+end
 
-
+class TransactionIntegrationTest < Minitest::Test
+  def test_invoice
+    skip
+  end
 end

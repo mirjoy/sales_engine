@@ -17,6 +17,10 @@ class TransactionRepo
     all.sample
   end
 
+  def invoice(invoice_id)
+    sales_engine.invoice_repo.find_all_by_id(invoice_id)
+  end
+
   def find_by_id(id)
     find_all_by_id(id)[0]
   end

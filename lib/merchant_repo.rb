@@ -64,8 +64,4 @@ class MerchantRepo
       merchant.updated_at == time
     end
   end
-
-  #most_revenue(x) returns top merchant instances ranked by total revenue
-  #most_items(x) reutnrs top merchant instances ranked by total number of items sold
-  #revenue(date) returns total revenue for that date across all merchants
 end

@@ -22,14 +22,6 @@
      @transaction_repo = TransactionRepo.new('./data/transactions.csv', self)
    end
 
-  #  def merchant_repo(filename = '../data/merchants.csv')
-  #    @merchant_repo ||= MerchantRepo.new(filename, self)
-  #  end
-   #
-  #  def item_repo(filename = '../data/items')
-  #    @item_repo ||= ItemRepo.new(filename, self)
-  #  end
-
  end
 
  # engine = SalesEngine.new

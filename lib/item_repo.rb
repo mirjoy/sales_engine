@@ -18,6 +18,14 @@ class ItemRepo
     all_items.parse.sample
   end
 
+  def invoice_items(id)
+    sales_engine.invoice_item_repo.find_all_by_invoice_id(id)
+  end
+
+  def merchant(merchant_id)
+    sales_engine.merchant_repo.find_all_by_id(merchant_id)
+  end
+
   def find_by_id(i_id)
     find_all_by_id[0]
   end
