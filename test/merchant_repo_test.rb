@@ -49,29 +49,20 @@ class MerchantRepoTest < Minitest::Test
   end
 end
 
-class FakeSalesEngine
-  attr_reader :merch_repo, :item_repo
-
-  def initialize
-    @merch_repo = MerchantRepo.new("./test/support/sample_merchants.csv", self)
-    @item_repo = ItemRepo.new("./test/support/sample_items.csv", self)
-  end
-end
-
 class MerchantIntegrationTest < Minitest::Test
-  attr_reader :real_sales
+  attr_reader :sales
 
   def setup
-    @real_sales = SalesEngine.new
+    @sales = SalesEngine.new
   end
 
   def test_it_finds_related_items
-    stuff = real_sales.merchant_repo.items(1)
+    stuff = sales.merchant_repo.items(1)
     assert_equal 15, stuff.count
   end
 
   def test_it_finds_related_invoices
-    stuff = real_sales.merchant_repo.invoices(1)
+    stuff = sales.merchant_repo.invoices(1)
     assert_equal 59, stuff.count
   end
 end

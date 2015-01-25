@@ -22,25 +22,3 @@ class MerchantParserTest < Minitest::Test
     assert_equal "Klein, Rempel and Jones", second.name
     end
 end
-
-class FakeMerchantRepository
-  attr_accessor :invoices
-
-  def find_invoices_by_merchant_id(id)
-    @invoices
-  end
-end
-
-class MerchantIntegrationTest < Minitest::Test
-
-  def test_it_finds_related_orders
-    skip
-    @merchant_repo = FakeMerchantRepository.new
-    data = {:name => "My Shop"}
-    @merchant = Merchant.new(data, @merchant_repo)
-    invoice = Array.new(5){ Invoice.new(:hi => "moarstuff")}
-    @merchant_repo.invoices = invoice
-    assert_equal invoice, @merchant.invoices
-  end
-
-end
