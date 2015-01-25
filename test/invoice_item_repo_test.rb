@@ -56,3 +56,24 @@ class InvoiceItemRepoTest < Minitest::Test
   end
 
 end
+
+
+class InvoiceItemIntegrationTest < Minitest::Test
+  attr_reader :sales
+
+  def setup
+    @sales = SalesEngine.new
+  end
+
+  def test_it_finds_related_invoice
+    skip
+    stuff = sales.invoice_item_repo.invoices(1)
+    assert_equal 15, stuff.count
+  end
+
+  def test_it_finds_related_item
+    skip
+    stuff = sales.invoice_item_repo.items(1)
+    assert_equal 59, stuff.count
+  end
+end

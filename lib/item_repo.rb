@@ -84,6 +84,13 @@ class ItemRepo
     end
   end
 
+  def find_all_by_invoice_item_id(invoice_item_id)
+    all.find_all do |item|
+      item.id == invoice_item_id
+    end
+  end
+
+
   #find_by_x() CHECK
   #fina_all_by_x() CHECK
   #most_revenue(x) returns top item instances ranked by total revenue

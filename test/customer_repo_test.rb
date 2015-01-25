@@ -53,6 +53,19 @@ class CustomerRepoTest < Minitest::Test
     customer = customer_repo.find_all_by_updated_at("2012-03-27 14:54:09 UTC")
     assert_equal 1, customer.count
   end
+end
 
 
+class CustomerIntegrationTest < Minitest::Test
+  attr_reader :sales
+
+  def setup
+    @sales = SalesEngine.new
+  end
+
+  def test_it_finds_related_invoices
+    skip
+    stuff = sales.customer_repo.invoices(1)
+    assert_equal 15, stuff.count
+  end
 end

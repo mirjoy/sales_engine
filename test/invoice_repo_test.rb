@@ -28,7 +28,7 @@ class InvoiceRepoTest < Minitest::Test
   end
 
   def test_it_finds_one_invoice_by_id
-    inv = invoice_repo.find_by_customer_id(1)
+    inv = invoice_repo.find_all_by_customer_id(1)
     assert_equal "shipped", inv.status
   end
 
@@ -71,5 +71,45 @@ class InvoiceRepoTest < Minitest::Test
     assert_equal 1, inv.count
   end
 
+
+end
+
+
+class InvoiceIntegrationTest < Minitest::Test
+  attr_reader :sales
+
+  def setup
+    @sales = SalesEngine.new
+  end
+
+  def test_it_finds_related_transactions
+    skip
+    stuff = sales.invoice_repo.transactions(1)
+    assert_equal 15, stuff.count
+  end
+
+  def test_it_finds_related_invoices_items
+    skip
+    stuff = sales.invoice_repo.invoice_items(1)
+    assert_equal 59, stuff.count
+  end
+
+  def test_it_finds_related_items
+    skip
+    stuff = sales.invoice_repo.items(1)
+    assert_equal 59, stuff.count
+  end
+
+  def test_it_finds_related_customer
+    skip
+    stuff = sales.invoice_repo.customer(1)
+    assert_equal 59, stuff.count
+  end
+
+  def test_it_finds_related_merchant
+    skip
+    stuff = sales.invoice_repo.merchant(1)
+    assert_equal 59, stuff.count
+  end
 
 end

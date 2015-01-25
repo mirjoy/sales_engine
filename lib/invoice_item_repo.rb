@@ -81,4 +81,13 @@ class InvoiceItemRepo
     end
   end
 
+  def invoices(invoice_item_id)
+    sales_engine.invoice_repo.find_all_by_invoice_item_id(invoice_item_id)
+  end
+
+  def items(invoice_item_id)
+    sales_engine.item_repo.find_all_by_invoice_item_id(invoice_item_id)
+  end
+
+
 end

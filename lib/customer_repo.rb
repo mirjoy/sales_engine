@@ -61,6 +61,17 @@ class CustomerRepo
     all.find_all do |customer|
       customer.updated_at == time
     end
+
+    def find_by_invoice_id(invoice_id)
+      all.find_all do |customer|
+        customer.id == invoice_id
+      end
+    end
+
+    def invoices(customer_id)
+      sales_engine.invoice_repo.find_all_by_customer_id(customer_id)
+    end
+
   end
 
   #find_by_x() CHECK
