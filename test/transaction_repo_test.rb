@@ -1,5 +1,7 @@
 require_relative './test_helper'
 require_relative '../lib/transaction_repo'
+require_relative '../lib/invoice_repo'
+require_relative '../lib/sales_engine'
 
 
 class TransactionRepoTest < Minitest::Test
@@ -63,7 +65,17 @@ class TransactionRepoTest < Minitest::Test
 end
 
 class TransactionIntegrationTest < Minitest::Test
+  attr_reader :transaction_repo,
+              :invoice_repo
+
+  def setup
+    sales = SalesEngine.new
+    @transaction_repo = TransactionRepo.new('./test/support/sample_transactions.csv', sales)
+    @invoice_repo = InvoiceRepo.new('./test/support/sample_invoices.csv', sales)
+  end
+
   def test_invoice
-    skip
+    num = transaction_repo.invoice(1)
+    assert_equal 1, num.count
   end
 end

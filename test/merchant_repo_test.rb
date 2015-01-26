@@ -50,10 +50,14 @@ class MerchantRepoTest < Minitest::Test
 end
 
 class MerchantIntegrationTest < Minitest::Test
-  attr_reader :sales
+  attr_reader :sales_engine
 
   def setup
-    @sales = SalesEngine.new
+    skip
+    @sales_engine = SalesEngine.new
+    @merchant_repo = MerchantRepo.new(data. sales_engine)
+    @item_repo = ItemRepo.new(data, sales_engine)
+    @invoice_repo = InvoiceRepo.new(sample_invoices.sales_engine)
   end
 
   def test_it_finds_related_items

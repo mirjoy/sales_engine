@@ -21,8 +21,8 @@ class InvoiceRepo
     find_all_by_id(id)[0]
   end
 
-  def find_all_by_customer_id(c_id)
-    find_all_by_customer_id(c_id)
+  def find_by_customer_id(c_id)
+    find_all_by_customer_id(c_id)[0]
   end
 
   def find_by_merchant_id(m_id)

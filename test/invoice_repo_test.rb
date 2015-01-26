@@ -28,7 +28,7 @@ class InvoiceRepoTest < Minitest::Test
   end
 
   def test_it_finds_one_invoice_by_id
-    inv = invoice_repo.find_all_by_customer_id(1)
+    inv = invoice_repo.find_by_customer_id(1)
     assert_equal "shipped", inv.status
   end
 
