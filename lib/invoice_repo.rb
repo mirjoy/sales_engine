@@ -93,9 +93,10 @@ class InvoiceRepo
     sales_engine.invoice_item_repo.find_all_by_invoice_id(invoice_id)
   end
 
-  def items(invoice_id, item_id)
-    sales_engine.invoice_item_repo.find_all_by_invoice_id(invoice_id)
-    sales_engine.item_repo.find_by_id(item_id)
+  def items(id)
+    new_id = sales_engine.invoice_item_repo.find_by_invoice_id(id).invoice_id
+    binding.pry
+    sales_engine.item_repo.find_by_id(new_id)
   end
 
   def customer(invoice_id)

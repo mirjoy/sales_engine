@@ -76,10 +76,14 @@ end
 
 
 class InvoiceIntegrationTest < Minitest::Test
-  attr_reader :sales
+  attr_reader :sales,
+              :invoice_repo,
+              :invoice_item_repo
 
   def setup
     @sales = SalesEngine.new
+    @invoice_repo = InvoiceRepo.new('./test/support/samples_invoices.csv', sales)
+    @invoice_item_repo = InvoiceItemRepo.new('./test/support/samples_invoice_items.csv', sales)
   end
 
   def test_it_finds_related_transactions
@@ -96,7 +100,7 @@ class InvoiceIntegrationTest < Minitest::Test
 
   def test_it_finds_related_items
     skip
-    stuff = sales.invoice_repo.items(1)
+    stuff = invoice_repo.items(1)
     assert_equal 59, stuff.count
   end
 
