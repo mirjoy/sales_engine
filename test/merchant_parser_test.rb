@@ -9,7 +9,7 @@ class MerchantParserTest < Minitest::Test
   end
 
   def test_it_parses_a_csv_of_data
-    filename = "./test/support/sample_merchants.csv"
+    filename = "./test/support/merchants.csv"
     parser = MerchantParser.new(filename, nil)
     merchants = parser.parse
 

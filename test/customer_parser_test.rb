@@ -8,7 +8,7 @@ class CustomerParserTest < Minitest::Test
   end
 
   def test_it_parses_a_csv_of_data
-    filename = "./test/support/sample_customers.csv"
+    filename = "./test/support/customers.csv"
     parser = CustomerParser.new(filename, nil)
     customers = parser.parse
 

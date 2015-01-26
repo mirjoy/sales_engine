@@ -95,7 +95,6 @@ class InvoiceRepo
 
   def items(id)
     new_id = sales_engine.invoice_item_repo.find_by_invoice_id(id).invoice_id
-    binding.pry
     sales_engine.item_repo.find_by_id(new_id)
   end
 

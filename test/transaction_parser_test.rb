@@ -8,7 +8,7 @@ class TransactionParserTest < Minitest::Test
   end
 
   def test_it_parses_a_csv_of_data
-    filename = "./test/support/sample_transactions.csv"
+    filename = "./test/support/transactions.csv"
     parser = TransactionParser.new(filename, nil)
     transactions = parser.parse
 

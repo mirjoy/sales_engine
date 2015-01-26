@@ -5,7 +5,7 @@ class SalesEngineTest < Minitest::Test
   attr_reader :sales_engine
 
   def setup
-    @sales_engine = SalesEngine.new
+    @sales_engine = SalesEngine.new('.test/support')
   end
 
   def test_methods_exist

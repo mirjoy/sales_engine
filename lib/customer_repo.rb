@@ -72,10 +72,4 @@ class CustomerRepo
   def invoices(customer_id)
     sales_engine.invoice_repo.find_all_by_customer_id(customer_id)
   end
-
-  #find_by_x() CHECK
-  #fina_all_by_x() CHECK
-  #most_revenue(x) returns top customer instances ranked by total revenue
-  #most_items(x) reutnrs top customer instances ranked by total number of items sold
-  #revenue(date) returns total revenue for that date across all customers
 end

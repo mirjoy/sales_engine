@@ -1,12 +1,13 @@
 require_relative './test_helper'
 require_relative '../lib/customer_repo'
+require_relative '../lib/invoice_repo'
 
 
 class CustomerRepoTest < Minitest::Test
   attr_accessor :customer_repo
 
   def setup
-    file = "./test/support/sample_customers.csv"
+    file = "./test/support/customers.csv"
     @customer_repo = CustomerRepo.new(file, nil)
   end
 
@@ -57,15 +58,18 @@ end
 
 
 class CustomerIntegrationTest < Minitest::Test
-  attr_reader :sales
+  attr_reader :sales,
+              :customer_repo,
+              :invoice_repo
 
   def setup
-    @sales = SalesEngine.new
+    @sales = SalesEngine.new('./test/support')
+    @customer_repo = CustomerRepo.new('./test/support/customers.csv', sales)
+    @invoice_repo = InvoiceRepo.new('./test/support/invoices.csv', sales)
   end
 
-  def test_it_finds_related_invoices
-    skip
+  def test_invoices
     stuff = sales.customer_repo.invoices(1)
-    assert_equal 15, stuff.count
+    assert_equal 5, stuff.count
   end
 end

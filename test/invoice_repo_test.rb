@@ -6,7 +6,7 @@ class InvoiceRepoTest < Minitest::Test
   attr_accessor :invoice_repo
 
   def setup
-    file = "./test/support/sample_invoices.csv"
+    file = "./test/support/invoices.csv"
     @invoice_repo = InvoiceRepo.new(file, nil)
   end
 
@@ -81,7 +81,7 @@ class InvoiceIntegrationTest < Minitest::Test
               :invoice_item_repo
 
   def setup
-    @sales = SalesEngine.new
+    @sales = SalesEngine.new('./test/support')
     @invoice_repo = InvoiceRepo.new('./test/support/samples_invoices.csv', sales)
     @invoice_item_repo = InvoiceItemRepo.new('./test/support/samples_invoice_items.csv', sales)
   end

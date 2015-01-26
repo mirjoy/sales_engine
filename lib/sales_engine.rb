@@ -13,13 +13,13 @@
                  :merchant_repo,
                  :item_repo
 
-   def initialize
-     @customer_repo = CustomerRepo.new('./data/customers.csv', self)
-     @invoice_item_repo = InvoiceItemRepo.new('./data/invoice_items.csv', self)
-     @invoice_repo = InvoiceRepo.new('./data/invoices.csv', self)
-     @item_repo = ItemRepo.new('./data/items.csv', self)
-     @merchant_repo = MerchantRepo.new('./data/merchants.csv', self)
-     @transaction_repo = TransactionRepo.new('./data/transactions.csv', self)
+   def initialize(dir)
+     @customer_repo = CustomerRepo.new("#{dir}/customers.csv", self)
+     @invoice_item_repo = InvoiceItemRepo.new("#{dir}/invoice_items.csv", self)
+     @invoice_repo = InvoiceRepo.new("#{dir}/invoices.csv", self)
+     @item_repo = ItemRepo.new("#{dir}/items.csv", self)
+     @merchant_repo = MerchantRepo.new("#{dir}/merchants.csv", self)
+     @transaction_repo = TransactionRepo.new("#{dir}/transactions.csv", self)
    end
 
  end

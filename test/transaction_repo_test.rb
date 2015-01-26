@@ -8,7 +8,7 @@ class TransactionRepoTest < Minitest::Test
   attr_accessor :transaction_repo
 
   def setup
-    file = "./test/support/sample_transactions.csv"
+    file = "./test/support/transactions.csv"
     @transaction_repo = TransactionRepo.new(file, nil)
   end
 
@@ -69,9 +69,9 @@ class TransactionIntegrationTest < Minitest::Test
               :invoice_repo
 
   def setup
-    sales = SalesEngine.new
-    @transaction_repo = TransactionRepo.new('./test/support/sample_transactions.csv', sales)
-    @invoice_repo = InvoiceRepo.new('./test/support/sample_invoices.csv', sales)
+    sales = SalesEngine.new("./test/support")
+    @transaction_repo = TransactionRepo.new('./test/support/transactions.csv', sales)
+    @invoice_repo = InvoiceRepo.new('./test/support/invoices.csv', sales)
   end
 
   def test_invoice

@@ -6,7 +6,7 @@ class ItemRepoTest < Minitest::Test
   attr_accessor :item_repo
 
   def setup
-    file = "./test/support/sample_items.csv"
+    file = "./test/support/items.csv"
     @item_repo = ItemRepo.new(file, nil)
   end
 
