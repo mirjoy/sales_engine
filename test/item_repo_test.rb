@@ -64,6 +64,16 @@ class ItemRepoTest < Minitest::Test
     item = item_repo.find_all_by_updated_at("2012-03-27 14:53:59 UTC")
     assert_equal 6, item.count
   end
+end
 
+class ItemRepoIntegrationTest < Minitest::Test
+
+  def test_invoice_items
+    skip
+  end
+
+  def test_merchant
+    skip
+  end
 
 end
