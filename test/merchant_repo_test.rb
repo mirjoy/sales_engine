@@ -49,24 +49,24 @@ class MerchantRepoTest < Minitest::Test
   end
 end
 
+
 class MerchantIntegrationTest < Minitest::Test
-  attr_reader :sales_engine
+  attr_reader :merchant_repo,
+              :item_repo
 
   def setup
-    skip
-    @sales_engine = SalesEngine.new
-    @merchant_repo = MerchantRepo.new(data. sales_engine)
-    @item_repo = ItemRepo.new(data, sales_engine)
-    @invoice_repo = InvoiceRepo.new(sample_invoices.sales_engine)
+    sales = SalesEngine.new("./test/support")
+    @merchant_repo = MerchantRepo.new('./test/support/merchants.csv', sales)
+    @item_repo = ItemRepo.new('./test/support/items.csv', sales)
   end
 
   def test_it_finds_related_items
-    stuff = sales.merchant_repo.items(1)
-    assert_equal 15, stuff.count
+    merchant_items = merchant_repo.items(1)
+    assert_equal 6, merchant_items.count
   end
 
   def test_it_finds_related_invoices
-    stuff = sales.merchant_repo.invoices(1)
-    assert_equal 59, stuff.count
+    merchant_invoices = merchant_repo.invoices(33)
+    assert_equal 1, merchant_invoices.count
   end
 end
