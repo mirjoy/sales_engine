@@ -1,6 +1,10 @@
 require_relative './test_helper'
 require_relative '../lib/invoice_repo'
-
+require_relative '../lib/transaction_repo'
+require_relative '../lib/invoice_item_repo'
+require_relative '../lib/item_repo'
+require_relative '../lib/customer_repo'
+require_relative '../lib/merchant_repo'
 
 class InvoiceRepoTest < Minitest::Test
   attr_accessor :invoice_repo
@@ -78,42 +82,46 @@ end
 class InvoiceIntegrationTest < Minitest::Test
   attr_reader :sales,
               :invoice_repo,
-              :invoice_item_repo
+              :transaction_repo,
+              :invoice_item_repo,
+              :item_repo,
+              :customer_repo,
+              :merchant_repo
 
   def setup
     @sales = SalesEngine.new('./test/support')
-    @invoice_repo = InvoiceRepo.new('./test/support/samples_invoices.csv', sales)
-    @invoice_item_repo = InvoiceItemRepo.new('./test/support/samples_invoice_items.csv', sales)
+    @invoice_repo = InvoiceRepo.new('./test/support/invoices.csv', sales)
+    @transaction_repo = TransactionRepo.new('./test/support/transactions.csv', sales)
+    @invoice_item_repo = InvoiceItemRepo.new('./test/support/invoice_items.csv', sales)
+    @item_repo = ItemRepo.new('./test/support/items.csv', sales)
+    @customer_repo = CustomerRepo.new('./test/support/customers.csv', sales)
+    @merchant_repo = MerchantRepo.new('./test/support/merchants.csv', sales)
   end
 
   def test_it_finds_related_transactions
-    skip
     stuff = sales.invoice_repo.transactions(1)
-    assert_equal 15, stuff.count
+    assert_equal 1, stuff.count
   end
 
   def test_it_finds_related_invoices_items
-    skip
     stuff = sales.invoice_repo.invoice_items(1)
-    assert_equal 59, stuff.count
+    assert_equal 5, stuff.count
   end
 
   def test_it_finds_related_items
     skip
     stuff = invoice_repo.items(1)
-    assert_equal 59, stuff.count
+    assert_equal 1, stuff.count
   end
 
   def test_it_finds_related_customer
-    skip
     stuff = sales.invoice_repo.customer(1)
-    assert_equal 59, stuff.count
+    assert_equal 1, stuff.count
   end
 
   def test_it_finds_related_merchant
-    skip
     stuff = sales.invoice_repo.merchant(1)
-    assert_equal 59, stuff.count
+    assert_equal 1, stuff.count
   end
 
 end

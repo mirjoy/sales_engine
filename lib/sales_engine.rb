@@ -24,5 +24,5 @@
 
  end
 
- # engine = SalesEngine.new
+ # engine = SalesEngine.new("./data")
  # engine.startup

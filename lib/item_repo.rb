@@ -50,15 +50,15 @@ class ItemRepo
     find_all_by_updated_at(time)[0]
   end
 
-  def find_all_by_id(i_id)
+  def find_all_by_id(item_id)
     all.find_all do |item|
-      item.id == i_id
+      item.id == item_id
     end
   end
 
-  def find_all_by_name(lname)
+  def find_all_by_name(last_name)
     all.find_all do |item|
-      item.name.downcase == lname.downcase
+      item.name.downcase == last_name.downcase
     end
   end
 
@@ -97,11 +97,4 @@ class ItemRepo
       item.id == invoice_item_id
     end
   end
-
-
-  #find_by_x() CHECK
-  #fina_all_by_x() CHECK
-  #most_revenue(x) returns top item instances ranked by total revenue
-  #most_items(x) reutnrs top item instances ranked by total number of items sold
-  #revenue(date) returns total revenue for that date across all items
 end

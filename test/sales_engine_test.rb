@@ -9,7 +9,6 @@ class SalesEngineTest < Minitest::Test
   end
 
   def test_methods_exist
-    # skip
     assert sales_engine.customer_repo
     assert sales_engine.invoice_item_repo
     assert sales_engine.invoice_repo

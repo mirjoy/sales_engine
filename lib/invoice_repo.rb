@@ -17,6 +17,29 @@ class InvoiceRepo
     all.sample
   end
 
+  def transactions(invoice_id)
+    sales_engine.transaction_repo.find_all_by_invoice_id(invoice_id)
+  end
+
+  def invoice_items(invoice_id)
+    sales_engine.invoice_item_repo.find_all_by_invoice_id(invoice_id)
+  end
+
+  def items(id)
+    invoice_id = sales_engine.invoice_item_repo.find_all_by_invoice_id(id)
+    # binding.pry
+    
+    sales_engine.item_repo.find_by_id(invoice_id)
+  end
+
+  def customer(invoice_id)
+    sales_engine.customer_repo.find_by_invoice_id(invoice_id)
+  end
+
+  def merchant(invoice_id)
+    sales_engine.merchant_repo.find_by_invoice_id(invoice_id)
+  end
+
   def find_by_id(id)
     find_all_by_id(id)[0]
   end
@@ -66,16 +89,14 @@ class InvoiceRepo
   end
 
   def find_all_by_created_at(time)
-    all.select do |merchant|
-      merchant.created_at == time
+    all.select do |invoice|
+      invoice.created_at == time
     end
   end
 
-  ## Should code above and below say invoice, not merchant?
-
   def find_all_by_updated_at(time)
-    all.select do |merchant|
-      merchant.updated_at == time
+    all.select do |invoice|
+      invoice.updated_at == time
     end
   end
 
@@ -85,25 +106,5 @@ class InvoiceRepo
     end
   end
 
-  def transactions(invoice_id)
-    sales_engine.transaction_repo.find_all_by_invoice_id(invoice_id)
-  end
-
-  def invoice_items(invoice_id)
-    sales_engine.invoice_item_repo.find_all_by_invoice_id(invoice_id)
-  end
-
-  def items(id)
-    new_id = sales_engine.invoice_item_repo.find_by_invoice_id(id).invoice_id
-    sales_engine.item_repo.find_by_id(new_id)
-  end
-
-  def customer(invoice_id)
-    sales_engine.customer_repo.find_by_invoice_id(invoice_id)
-  end
-
-  def merchant(invoice_id)
-    sales_engine.merchant_repo.find_by_invoice_id(invoice_id)
-  end
 
 end
