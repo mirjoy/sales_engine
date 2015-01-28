@@ -1,3 +1,5 @@
+require 'date'
+
 class Transaction
     attr_reader :id,
                 :invoice_id,
@@ -14,13 +16,17 @@ class Transaction
     @credit_card_number = row[:credit_card_number]
     @credit_card_expiration_date = row[:credit_card_expiration_date]
     @result = row[:result]
-    @created_at = row[:created_at]
-    @updated_at = row[:updated_at]
+    @created_at = Date.parse(row[:created_at])
+    @updated_at = Date.parse(row[:updated_at])
     @sales_engine = sales_engine
   end
 
   def invoice
     sales_engine.invoice_repository.find_by_id(@invoice_id)
+  end
+
+  def successful?
+    result == "success"
   end
 
 end

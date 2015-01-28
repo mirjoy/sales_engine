@@ -1,3 +1,5 @@
+require 'date'
+
 class Customer
     attr_reader :id,
                 :first_name,
@@ -10,8 +12,8 @@ class Customer
     @id = row[:id].to_i
     @first_name = row[:first_name]
     @last_name  = row[:last_name]
-    @created_at = row[:created_at]
-    @updated_at = row[:updated_at]
+    @created_at = Date.parse(row[:created_at])
+    @updated_at = Date.parse(row[:updated_at])
     @sales_engine = parent_class
   end
 
@@ -25,6 +27,6 @@ class Customer
   end
 
   def favorite_merchant
-    
+
   end
 end

@@ -17,11 +17,19 @@ class MerchantRepo
     all_merchants.parse.sample
   end
 
-  def most_items(num)
-
+  def revenue(date)
+    binding.pry
+    
+    all.paid_invoices.revenue(date)
   end
 
   def most_revenue(num)
+
+    merchants_by_rev = revenue.sort.reverse
+    merchants_by_rev.shift(num)
+  end
+
+  def most_items(num)
 
   end
 
