@@ -17,7 +17,7 @@ class TransactionRepoTest < Minitest::Test
   end
 
   def test_it_finds_all_transactions
-    assert_equal 5, transaction_repo.all.count
+    assert_equal 7, transaction_repo.all.count
   end
 
   def test_it_finds_the_third_transaction
@@ -60,6 +60,6 @@ class TransactionRepoTest < Minitest::Test
 
   def test_it_finds_invoice_by_updated_at
     inv = transaction_repo.find_all_by_updated_at("2012-03-27 14:54:10 UTC")
-    assert_equal 3, inv.count
+    assert_equal 5, inv.count
   end
 end

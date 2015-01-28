@@ -18,4 +18,13 @@ class Customer
   def invoices
     sales_engine.invoice_repository.find_all_by_customer_id(@id)
   end
+
+  def transactions
+    invoices_id = sales_engine.invoice_repository.find_by_customer_id(@id).id
+    sales_engine.transaction_repository.find_all_by_invoice_id(invoices_id)
+  end
+
+  def favorite_merchant
+    
+  end
 end

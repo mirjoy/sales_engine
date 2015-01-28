@@ -22,4 +22,9 @@ class MerchantTest < Minitest::Test
     assert_equal "John", merchant.name
   end
 
+  def test_it_finds_successful_transactions
+    skip
+    merchant = Merchant.new
+  end
+
 end

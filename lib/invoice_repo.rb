@@ -33,6 +33,10 @@ class InvoiceRepo
     sales_engine.merchant_repository.find_by_invoice_id(invoice_id)
   end
 
+  def pending
+    sales_engine.transaction_repository.find_all_by_result("failed")
+  end
+
   def find_by_id(id)
     find_all_by_id(id)[0]
   end

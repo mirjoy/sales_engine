@@ -124,4 +124,8 @@ class InvoiceIntegrationTest < Minitest::Test
     assert_equal "Schroeder-Jerde", stuff.name
   end
 
+  def test_it_finds_pending_sales
+    stuff = sales.invoice_repository.pending
+    assert_equal 2, stuff.count
+  end
 end

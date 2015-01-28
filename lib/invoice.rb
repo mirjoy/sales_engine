@@ -33,13 +33,7 @@ class Invoice
     inv_items = sales_engine.invoice_item_repository.find_all_by_invoice_id(@id)
     item_ids = inv_items.map {|inv_item| inv_item.item_id}
     item_ids.map {|it_id| sales_engine.item_repository.find_by_id(it_id)}
-
-  #jwan code
-    # invoice_item_objects = invoice_item_repository.find_all_by_invoice_id(id)
-    # item_ids = invoice_item_objects.map {|invoice_item| invoice_item.item_id}
-    # item_ids.map {|item_id| item_repository.find_by_id(item_id)}
-    #
-    end
+  end
 
   def invoice_items
     sales_engine.invoice_item_repository.find_all_by_invoice_id(@id)
@@ -47,5 +41,11 @@ class Invoice
 
   def charge
 
+  end
+
+  def amount
+    invoice_items.reduce(0) do |sum, invoice_item|
+      sum + (invoice_item.unit_price * invoice_item.quantity)
+    end
   end
 end
