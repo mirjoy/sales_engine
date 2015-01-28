@@ -3,7 +3,6 @@ require_relative '../lib/invoice_item'
 
 class InvoiceItemParser
   attr_reader   :filename
-  attr_accessor :parent_class
 
   def initialize(filename, parent_class)
     @filename = filename
@@ -13,7 +12,7 @@ class InvoiceItemParser
   def parse
     file = CSV.open(filename, headers: true, header_converters: :symbol)
     file.map do |line|
-      InvoiceItem.new(line, parent_class)
+      InvoiceItem.new(line, @parent_class)
     end
   end
 

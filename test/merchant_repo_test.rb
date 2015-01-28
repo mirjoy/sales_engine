@@ -61,11 +61,13 @@ class MerchantIntegrationTest < Minitest::Test
   end
 
   def test_it_finds_related_items
+    skip
     merchant_items = merchant_repo.items(1)
     assert_equal 6, merchant_items.count
   end
 
   def test_it_finds_related_invoices
+    skip
     merchant_invoices = merchant_repo.invoices(33)
     assert_equal 1, merchant_invoices.count
   end

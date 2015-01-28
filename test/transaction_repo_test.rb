@@ -63,19 +63,3 @@ class TransactionRepoTest < Minitest::Test
     assert_equal 3, inv.count
   end
 end
-
-class TransactionIntegrationTest < Minitest::Test
-  attr_reader :transaction_repo,
-              :invoice_repo
-
-  def setup
-    sales = SalesEngine.new("./test/support")
-    @transaction_repo = TransactionRepo.new('./test/support/transactions.csv', sales)
-    @invoice_repo = InvoiceRepo.new('./test/support/invoices.csv', sales)
-  end
-
-  def test_invoice
-    num = transaction_repo.invoice(1)
-    assert_equal 1, num.count
-  end
-end

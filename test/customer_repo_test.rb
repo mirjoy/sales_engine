@@ -4,11 +4,11 @@ require_relative '../lib/invoice_repo'
 
 
 class CustomerRepoTest < Minitest::Test
-  attr_accessor :customer_repo
+  attr_accessor :customer_repository
 
   def setup
     file = "./test/support/customers.csv"
-    @customer_repo = CustomerRepo.new(file, nil)
+    @customer_repository = CustomerRepo.new(file, nil)
   end
 
   def test_it_exists
@@ -16,42 +16,53 @@ class CustomerRepoTest < Minitest::Test
   end
 
   def test_it_finds_all_customers
-    assert_equal "Joey", customer_repo.all[0].first_name
+    assert_equal "Joey", customer_repository.all[0].first_name
   end
 
   def test_it_finds_the_third_customer
-    assert_equal "Leanne", customer_repo.all[3].first_name
+    assert_equal "Leanne", customer_repository.all[3].first_name
+  end
+
+  def test_it_finds_a_customer_by_first_name_case_insensitively
+    customer = customer_repository.find_by_first_name("LeannE")
+    assert_equal "Braun", customer.last_name
   end
 
   def test_it_finds_all_customers_by_first_name_case_insensitively
-    customer = customer_repo.find_all_by_first_name("LeannE")
+    customer = customer_repository.find_all_by_first_name("LeannE")
     assert_equal "Leanne", customer[0].first_name
     assert_equal 2, customer.count
   end
 
+  def test_it_finds_a_customer_by_last_name_case_insensitively
+    customer = customer_repository.find_by_last_name("BRaun")
+    assert_equal "Leanne", customer.first_name
+  end
+
+
   def test_it_finds_all_customers_by_last_name_case_insensitively
-    customer = customer_repo.find_all_by_last_name("BrauN")
-    assert_equal "Braun", customer[0].last_name
+    customer = customer_repository.find_all_by_last_name("BrauN")
+    assert_equal "Leanne", customer[0].first_name
     assert_equal 2, customer.count
   end
 
   def test_it_finds_all_customers_by_id
-    customer = customer_repo.find_all_by_id(4)
+    customer = customer_repository.find_all_by_id(4)
     assert_equal "Leanne", customer[0].first_name
     assert_equal 2, customer.count
   end
 
   def test_it_finds_a_random_customer
-    assert customer_repo.random
+    assert customer_repository.random
   end
 
   def test_it_finds_customer_by_created_at
-    customer = customer_repo.find_all_by_created_at("2012-03-27 14:54:09 UTC")
+    customer = customer_repository.find_all_by_created_at("2012-03-27 14:54:09 UTC")
     assert_equal 1, customer.count
   end
 
   def test_it_finds_customer_by_updated_at
-    customer = customer_repo.find_all_by_updated_at("2012-03-27 14:54:09 UTC")
+    customer = customer_repository.find_all_by_updated_at("2012-03-27 14:54:09 UTC")
     assert_equal 1, customer.count
   end
 end
@@ -59,17 +70,17 @@ end
 
 class CustomerIntegrationTest < Minitest::Test
   attr_reader :sales,
-              :customer_repo,
+              :customer_repository,
               :invoice_repo
 
   def setup
     @sales = SalesEngine.new('./test/support')
-    @customer_repo = CustomerRepo.new('./test/support/customers.csv', sales)
+    @customer_repository = CustomerRepo.new('./test/support/customers.csv', sales)
     @invoice_repo = InvoiceRepo.new('./test/support/invoices.csv', sales)
   end
 
   def test_invoices
-    stuff = sales.customer_repo.invoices(1)
+    stuff = sales.customer_repository.invoices(1)
     assert_equal 5, stuff.count
   end
 end

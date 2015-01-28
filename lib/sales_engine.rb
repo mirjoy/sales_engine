@@ -6,20 +6,24 @@
  require_relative '../lib/transaction_repo'
 
  class SalesEngine
-   attr_accessor :customer_repo,
-                 :invoice_item_repo,
-                 :invoice_repo,
-                 :transaction_repo,
-                 :merchant_repo,
-                 :item_repo
+   attr_accessor :customer_repository,
+                 :invoice_item_repository,
+                 :invoice_repository,
+                 :transaction_repository,
+                 :merchant_repository,
+                 :item_repository
 
    def initialize(dir)
-     @customer_repo = CustomerRepo.new("#{dir}/customers.csv", self)
-     @invoice_item_repo = InvoiceItemRepo.new("#{dir}/invoice_items.csv", self)
-     @invoice_repo = InvoiceRepo.new("#{dir}/invoices.csv", self)
-     @item_repo = ItemRepo.new("#{dir}/items.csv", self)
-     @merchant_repo = MerchantRepo.new("#{dir}/merchants.csv", self)
-     @transaction_repo = TransactionRepo.new("#{dir}/transactions.csv", self)
+     @customer_repository = CustomerRepo.new("#{dir}/customers.csv", self)
+     @invoice_item_repository = InvoiceItemRepo.new("#{dir}/invoice_items.csv", self)
+     @invoice_repository = InvoiceRepo.new("#{dir}/invoices.csv", self)
+     @item_repository = ItemRepo.new("#{dir}/items.csv", self)
+     @merchant_repository = MerchantRepo.new("#{dir}/merchants.csv", self)
+     @transaction_repository = TransactionRepo.new("#{dir}/transactions.csv", self)
+   end
+
+   def startup
+
    end
 
  end

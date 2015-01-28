@@ -18,26 +18,20 @@ class InvoiceRepo
   end
 
   def transactions(invoice_id)
-    sales_engine.transaction_repo.find_all_by_invoice_id(invoice_id)
+    sales_engine.transaction_repository.find_all_by_invoice_id(invoice_id)
   end
 
   def invoice_items(invoice_id)
-    sales_engine.invoice_item_repo.find_all_by_invoice_id(invoice_id)
+    sales_engine.invoice_item_repository.find_all_by_invoice_id(invoice_id)
   end
 
-  def items(id)
-    invoice_id = sales_engine.invoice_item_repo.find_all_by_invoice_id(id)
-    # binding.pry
-    
-    sales_engine.item_repo.find_by_id(invoice_id)
-  end
 
   def customer(invoice_id)
-    sales_engine.customer_repo.find_by_invoice_id(invoice_id)
+    sales_engine.customer_repository.find_by_invoice_id(invoice_id)
   end
 
   def merchant(invoice_id)
-    sales_engine.merchant_repo.find_by_invoice_id(invoice_id)
+    sales_engine.merchant_repository.find_by_invoice_id(invoice_id)
   end
 
   def find_by_id(id)

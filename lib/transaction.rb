@@ -5,10 +5,10 @@ class Transaction
                 :credit_card_expiration_date,
                 :result,
                 :created_at,
-                :updated_at
-  attr_accessor :parent_class
+                :updated_at,
+                :sales_engine
 
-  def initialize(row, parent_class)
+  def initialize(row, sales_engine)
     @id = row[:id].to_i
     @invoice_id = row[:invoice_id].to_i
     @credit_card_number = row[:credit_card_number]
@@ -16,7 +16,11 @@ class Transaction
     @result = row[:result]
     @created_at = row[:created_at]
     @updated_at = row[:updated_at]
-    @parent_class = parent_class
+    @sales_engine = sales_engine
+  end
+
+  def invoice
+    sales_engine.invoice_repository.find_by_id(@invoice_id)
   end
 
 end

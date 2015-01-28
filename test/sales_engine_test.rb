@@ -9,11 +9,11 @@ class SalesEngineTest < Minitest::Test
   end
 
   def test_methods_exist
-    assert sales_engine.customer_repo
-    assert sales_engine.invoice_item_repo
-    assert sales_engine.invoice_repo
-    assert sales_engine.merchant_repo
-    assert sales_engine.transaction_repo
-    assert sales_engine.item_repo
+    assert sales_engine.customer_repository
+    assert sales_engine.invoice_item_repository
+    assert sales_engine.invoice_repository
+    assert sales_engine.merchant_repository
+    assert sales_engine.transaction_repository
+    assert sales_engine.item_repository
   end
 end

@@ -3,7 +3,6 @@ require_relative '../lib/merchant'
 
 class MerchantParser
   attr_reader   :filename
-  attr_accessor :merchant_repo
 
   def initialize(filename, parent_class)
     @filename = filename
@@ -13,7 +12,7 @@ class MerchantParser
   def parse
     file = CSV.open(filename, headers: true, header_converters: :symbol)
     file.map do |line|
-      Merchant.new(line, merchant_repo)
+      Merchant.new(line, @parent_class)
     end
   end
 

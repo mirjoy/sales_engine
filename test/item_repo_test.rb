@@ -69,24 +69,24 @@ end
 
 class ItemIntegrationTest < Minitest::Test
   attr_reader :sales,
-              :item_repo,
-              :invoice_repo,
-              :merchant_repo
+              :item_repository,
+              :invoice_item_repository,
+              :merchant_repository
 
   def setup
     @sales = SalesEngine.new("./test/support")
-    @item_repo = ItemRepo.new('./test/support/items.csv', sales)
-    @invoice_item_repo = InvoiceItemRepo.new('./test/support/invoice_items.csv', sales)
-    @merchant_repo = MerchantRepo.new('./test/support/merchants.csv', sales)
+    @item_repository = ItemRepo.new('./test/support/items.csv', sales)
+    @invoice_item_repository = InvoiceItemRepo.new('./test/support/invoice_items.csv', sales)
+    @merchant_repository = MerchantRepo.new('./test/support/merchants.csv', sales)
   end
 
   def test_invoice_items
-    num = item_repo.invoice_items(1)
+    num = item_repository.invoice_items(1)
     assert_equal 5, num.count
   end
 
   def test_merchant
-    num = item_repo.merchant(1)
+    num = item_repository.merchant(1)
     assert_equal 1, num.count
   end
 end

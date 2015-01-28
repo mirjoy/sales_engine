@@ -46,48 +46,45 @@ class InvoiceItemRepo
   end
 
   def find_all_by_id(id)
-    all.find_all do |transact|
-      transact.id == id
+    all.find_all do |inv_item|
+      inv_item.id == id
+    end
+  end
+
+  def find_all_by_item_id(id)
+    all.find_all do |inv_item|
+      inv_item.item_id == id
     end
   end
 
   def find_all_by_invoice_id(id)
-    all.find_all do |transact|
-      transact.invoice_id == id
+    all.find_all do |inv_item|
+      inv_item.invoice_id == id
     end
   end
 
   def find_all_by_quantity(num)
-    all.find_all do |transact|
-      transact.quantity == num
+    all.find_all do |inv_item|
+      inv_item.quantity == num
     end
   end
 
   def find_all_by_unit_price(num)
-    all.find_all do |transact|
-      transact.unit_price == num
+    all.find_all do |inv_item|
+      inv_item.unit_price == num
     end
   end
 
   def find_all_by_created_at(time)
-    all.find_all do |transact|
-      transact.created_at == time
+    all.find_all do |inv_item|
+      inv_item.created_at == time
     end
   end
 
   def find_all_by_updated_at(time)
-    all.find_all do |transact|
-      transact.updated_at == time
+    all.find_all do |inv_item|
+      inv_item.updated_at == time
     end
   end
-
-  def invoices(invoice_item_id)
-    sales_engine.invoice_repo.find_all_by_invoice_item_id(invoice_item_id)
-  end
-
-  def items(invoice_item_id)
-    sales_engine.item_repo.find_all_by_invoice_item_id(invoice_item_id)
-  end
-
 
 end

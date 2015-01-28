@@ -18,19 +18,23 @@ class CustomerRepo
   end
 
   def find_by_id(c_id)
-    find_all_by_id[0]
+    find_all_by_id(c_id)[0]
   end
 
-  def find_by_name(lname)
-    find_all_by_name[0]
+  def find_by_first_name(fname)
+    find_all_by_first_name(fname)[0]
+  end
+
+  def find_by_last_name(lname)
+    find_all_by_last_name(lname)[0]
   end
 
   def find_by_created_at(time)
-    find_all_by_created_at[0]
+    find_all_by_created_at(time)[0]
   end
 
   def find_by_updated_at(time)
-    find_all_by_updated_at[0]
+    find_all_by_updated_at(time)[0]
   end
 
   def find_all_by_id(c_id)
@@ -39,15 +43,15 @@ class CustomerRepo
     end
   end
 
-  def find_all_by_first_name(first_name)
+  def find_all_by_first_name(fname)
     all.find_all do |customer|
-      customer.first_name.downcase == first_name.downcase
+      customer.first_name.downcase == fname.downcase
     end
   end
 
-  def find_all_by_last_name(last_name)
+  def find_all_by_last_name(lname)
     all.find_all do |customer|
-      customer.last_name.downcase == last_name.downcase
+      customer.last_name.downcase == lname.downcase
     end
   end
 
@@ -70,6 +74,6 @@ class CustomerRepo
   end
 
   def invoices(customer_id)
-    sales_engine.invoice_repo.find_all_by_customer_id(customer_id)
+    sales_engine.invoice_repository.find_all_by_customer_id(customer_id)
   end
 end

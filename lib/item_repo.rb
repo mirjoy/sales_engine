@@ -19,19 +19,19 @@ class ItemRepo
   end
 
   def invoice_items(id)
-    sales_engine.invoice_item_repo.find_all_by_invoice_id(id)
+    sales_engine.invoice_item_repository.find_all_by_invoice_id(id)
   end
 
   def merchant(merchant_id)
-    sales_engine.merchant_repo.find_all_by_id(merchant_id)
+    sales_engine.merchant_repository.find_all_by_id(merchant_id)
   end
 
   def find_by_id(i_id)
-    find_all_by_id[0]
+    find_all_by_id(i_id)[0]
   end
 
   def find_by_name(lname)
-    find_all_by_name[0]
+    find_all_by_name(lname)[0]
   end
 
   def find_by_description(desc)
