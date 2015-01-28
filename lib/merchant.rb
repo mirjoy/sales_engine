@@ -30,11 +30,23 @@ class Merchant
 
   end
 
-  def revenue
-    if sales_engine.invoices.merchant_id == id &&
-      sales_engine.invoices.status == "success"
+  def successful_transactions(merch_id)
+    successful_transactions = merch_id.invoices.map.all? do |transaction|
+      transaction.status == "success"
     end
   end
 
+  def revenue(id)
+    # successful_transactions are invoice objects
+    # need to find invoice_item_id, so we can calculate revenue
+    successful_transactions.map do |transaction|
+      invoice_id = transaction.id
+      #invoice id
+
+      transaction.unit_price * transaction.quantity
+    end
+
+
+  end
 
 end

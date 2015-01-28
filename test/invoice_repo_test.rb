@@ -121,7 +121,7 @@ class InvoiceIntegrationTest < Minitest::Test
 
   def test_it_finds_related_merchant
     stuff = sales.invoice_repository.merchant(1)
-    assert_equal 1, stuff.count
+    assert_equal "Schroeder-Jerde", stuff.name
   end
 
 end

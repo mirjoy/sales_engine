@@ -42,31 +42,35 @@ class MerchantRepo
   end
 
   def find_all_by_id(m_id)
-    all_merchants.parse.find_all do |merchant|
+    all.find_all do |merchant|
       merchant.id == m_id
     end
   end
 
   def find_all_by_name(lname)
-    all_merchants.parse.find_all do |merchant|
+    all.find_all do |merchant|
         merchant.name.downcase == lname.downcase
       end
   end
 
   def find_all_by_created_at(time)
-    all_merchants.parse.find_all do |merchant|
+    all.find_all do |merchant|
       merchant.created_at == time
     end
   end
 
   def find_all_by_updated_at(time)
-    all_merchants.parse.find_all do |merchant|
+    all.find_all do |merchant|
       merchant.updated_at == time
     end
   end
 
   def find_by_invoice_id(invoice_id)
-    all_merchants.parse.find_all do |merchant|
+    find_all_by_invoice_id(invoice_id)[0]
+  end
+
+  def find_all_by_invoice_id(invoice_id)
+    all.find_all do |merchant|
       merchant.id == invoice_id
     end
   end

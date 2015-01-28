@@ -25,7 +25,6 @@ class InvoiceRepo
     sales_engine.invoice_item_repository.find_all_by_invoice_id(invoice_id)
   end
 
-
   def customer(invoice_id)
     sales_engine.customer_repository.find_by_invoice_id(invoice_id)
   end

@@ -18,9 +18,7 @@ class Invoice
   end
 
   def successful_transactions_by_merchant(merch_id)
-    (merch_id == merchant_id).all? do |transaction|
-      transaction.status == "success"
-    end
+
   end
 
   def customer
@@ -32,9 +30,16 @@ class Invoice
   end
 
   def items
-    inv_item_id = sales_engine.invoice_item_repository.find_by_invoice_id(@id).id
-    sales_engine.item_repository.find_all_by_invoice_item_id(inv_item_id)
-  end
+    inv_items = sales_engine.invoice_item_repository.find_all_by_invoice_id(@id)
+    item_ids = inv_items.map {|inv_item| inv_item.item_id}
+    item_ids.map {|it_id| sales_engine.item_repository.find_by_id(it_id)}
+
+  #jwan code
+    # invoice_item_objects = invoice_item_repository.find_all_by_invoice_id(id)
+    # item_ids = invoice_item_objects.map {|invoice_item| invoice_item.item_id}
+    # item_ids.map {|item_id| item_repository.find_by_id(item_id)}
+    #
+    end
 
   def invoice_items
     sales_engine.invoice_item_repository.find_all_by_invoice_id(@id)

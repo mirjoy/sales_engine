@@ -97,4 +97,14 @@ class ItemRepo
       item.id == invoice_item_id
     end
   end
+
+  def find_by_unit_price(price)
+    find_all_by_unit_price(price)[0]
+  end
+
+  def find_all_by_unit_price(price)
+    all.find_all do |item|
+      item.unit_price == price
+    end
+  end
 end

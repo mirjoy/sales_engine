@@ -37,8 +37,8 @@ class InvoiceItemRepoTest < Minitest::Test
   end
 
   def test_it_finds_all_invoice_items_by_unit_price
-    inv = invoice_item_repository.find_by_unit_price(2196)
-    assert_equal 3, inv.quantity
+    inv = invoice_item_repository.find_all_by_unit_price(21.96)
+    assert_equal 1, inv.count
   end
 
   def test_it_finds_a_transaction_by_created_at

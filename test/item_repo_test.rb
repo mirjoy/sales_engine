@@ -41,7 +41,7 @@ class ItemRepoTest < Minitest::Test
   end
 
   def test_it_finds_all_items_by_unit_price
-    item = item_repo.find_all_by_unit_price(4291)
+    item = item_repo.find_all_by_unit_price(42.91)
     assert_equal "Item Nemo Facere", item[0].name
     assert_equal 2, item.count
   end
