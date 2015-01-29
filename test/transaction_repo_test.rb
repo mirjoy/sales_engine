@@ -36,7 +36,7 @@ class TransactionRepoTest < Minitest::Test
 
   def test_it_finds_an_invoice_by_credit_card_number
     inv = transaction_repo.find_all_by_credit_card_number("4654405418249632")
-    assert_equal "2012-03-27 14:54:09 UTC", inv[0].created_at
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"), inv[0].created_at
   end
 
   def test_it_finds_all_invoices_by_result
@@ -49,8 +49,9 @@ class TransactionRepoTest < Minitest::Test
   end
 
   def test_it_finds_a_transaction_by_created_at
-    inv = transaction_repo.find_all_by_created_at("2012-03-27 14:54:09 UTC")
-    assert_equal 2, inv.count
+    date = Date.parse("2012-03-27 14:54:09 UTC")
+    inv = transaction_repo.find_all_by_created_at(date)
+    assert_equal 7, inv.count
   end
 
   def test_it_finds_no_invoice_by_created_at
@@ -59,7 +60,8 @@ class TransactionRepoTest < Minitest::Test
   end
 
   def test_it_finds_invoice_by_updated_at
-    inv = transaction_repo.find_all_by_updated_at("2012-03-27 14:54:10 UTC")
-    assert_equal 5, inv.count
+    date = Date.parse("2012-03-27 14:54:10 UTC")
+    inv = transaction_repo.find_all_by_updated_at(date)
+    assert_equal 7, inv.count
   end
 end

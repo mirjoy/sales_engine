@@ -57,13 +57,15 @@ class CustomerRepoTest < Minitest::Test
   end
 
   def test_it_finds_customer_by_created_at
-    customer = customer_repository.find_all_by_created_at("2012-03-27 14:54:09 UTC")
-    assert_equal 1, customer.count
+    date = Date.parse("2012-03-27 14:54:09 UTC")
+    customer = customer_repository.find_all_by_created_at(date)
+    assert_equal 6, customer.count
   end
 
   def test_it_finds_customer_by_updated_at
-    customer = customer_repository.find_all_by_updated_at("2012-03-27 14:54:09 UTC")
-    assert_equal 1, customer.count
+    date = Date.parse("2012-03-27 14:54:09 UTC")
+    customer = customer_repository.find_all_by_updated_at(date)
+    assert_equal 6, customer.count
   end
 end
 

@@ -39,12 +39,14 @@ class MerchantRepoTest < Minitest::Test
   end
 
   def test_it_finds_merchant_by_created_at
-    merch = merchant_repo.find_all_by_created_at("2012-03-27 14:53:59 UTC")
+    date = Date.parse("2012-03-27 14:53:59 UTC")
+    merch = merchant_repo.find_all_by_created_at(date)
     assert_equal 6, merch.count
   end
 
   def test_it_finds_merchant_by_updated_at
-    merch = merchant_repo.find_all_by_updated_at("2012-03-27 14:53:59 UTC")
+    date = Date.parse("2012-03-27 14:53:59 UTC")
+    merch = merchant_repo.find_all_by_updated_at(date)
     assert_equal 6, merch.count
   end
 end
@@ -71,5 +73,5 @@ class MerchantIntegrationTest < Minitest::Test
     merchant_invoices = sales.merchant_repository.invoices(33)
     assert_equal 1, merchant_invoices.count
   end
-  
+
 end

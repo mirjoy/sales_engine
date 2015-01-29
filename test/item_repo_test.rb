@@ -57,12 +57,14 @@ class ItemRepoTest < Minitest::Test
   end
 
   def test_it_finds_item_by_created_at
-    item = item_repo.find_all_by_created_at("2012-03-27 14:53:59 UTC")
+    date = Date.parse("2012-03-27 14:53:59 UTC")
+    item = item_repo.find_all_by_created_at(date)
     assert_equal 6, item.count
   end
 
   def test_it_finds_item_by_updated_at
-    item = item_repo.find_all_by_updated_at("2012-03-27 14:53:59 UTC")
+    date = Date.parse("2012-03-27 14:53:59 UTC")
+    item = item_repo.find_all_by_updated_at(date)
     assert_equal 6, item.count
   end
 end

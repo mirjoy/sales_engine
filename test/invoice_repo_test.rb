@@ -43,17 +43,17 @@ class InvoiceRepoTest < Minitest::Test
 
   def test_it_finds_one_invoice_by_customer_id
     inv = invoice_repository.find_all_by_customer_id(1)
-    assert_equal "2012-03-25 09:54:09 UTC", inv[0].created_at
+    assert_equal Date.parse("2012-03-25 09:54:09 UTC"), inv[0].created_at
   end
 
   def test_it_finds_all_invoices_by_merchant_id
     inv = invoice_repository.find_all_by_merchant_id(75)
-    assert_equal "2012-03-12 05:54:09 UTC", inv[0].created_at
+    assert_equal Date.parse("2012-03-12 05:54:09 UTC"), inv[0].created_at
   end
 
   def test_it_finds_one_invoice_by_merchant_id
     inv = invoice_repository.find_by_merchant_id(75)
-    assert_equal "2012-03-12 05:54:09 UTC", inv.created_at
+    assert_equal Date.parse("2012-03-12 05:54:09 UTC"), inv.created_at
   end
 
   def test_it_finds_a_random_invoice
@@ -61,7 +61,8 @@ class InvoiceRepoTest < Minitest::Test
   end
 
   def test_it_finds_invoice_by_created_at
-    inv = invoice_repository.find_all_by_created_at("2012-03-10 00:54:09 UTC")
+    date = Date.parse("2012-03-10 00:54:09 UTC")
+    inv = invoice_repository.find_all_by_created_at(date)
     assert_equal 1, inv.count
   end
 
@@ -71,7 +72,8 @@ class InvoiceRepoTest < Minitest::Test
   end
 
   def test_it_finds_invoice_by_updated_at
-    inv = invoice_repository.find_all_by_updated_at("2012-03-07 19:54:10 UTC")
+    date = Date.parse("2012-03-07 19:54:10 UTC")
+    inv = invoice_repository.find_all_by_updated_at(date)
     assert_equal 1, inv.count
   end
 
