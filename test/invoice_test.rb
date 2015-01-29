@@ -13,6 +13,7 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_it_stores_ids_as_integers_only
+    binding.pry
     invoice = Invoice.new({:id => '6'}, nil)
     assert_equal 6, invoice.id
   end
